@@ -12,6 +12,8 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddControllers();
+
 var app = builder.Build();
 
 if (app.Environment.IsDevelopment())
@@ -20,6 +22,13 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+//
+//
+//
+// Add Controller, Clean architecture, describe crud`s logic in Services, create DTO class
+//
+//
+//
 
 List<Note> notes = new List<Note>();
 
@@ -40,5 +49,7 @@ app.MapDelete(("/note/{id}"), (Guid id) =>
 
     return Results.Ok();
 });
+
+app.MapControllers();
 
 app.Run();
